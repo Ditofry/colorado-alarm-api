@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
 
+#developer.forecast.io library. https://github.com/darkskyapp/forecast-ruby
+gem 'forecast_io'
+#Windows timezone fix.
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
