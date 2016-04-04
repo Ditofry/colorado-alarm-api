@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :forecasts
+  get '/forecasts', to: 'forecasts#index'
+  get '/forecasts/:zipcode', to: 'forecasts#show'
 end
