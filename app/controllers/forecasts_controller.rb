@@ -10,7 +10,8 @@ class ForecastsController < ApplicationController
     # be more intuitive to name it "zip".  We should probably declare the show
     # route "manually" instead of letting our "resource" declaration do all of
     # the work.
-    @forecast = Forecast.where(zip: params[:id])
+    #@forecast = Forecast.where(zip: params[:id]) #comment out database hit for now.
+    @forecast = Forecast.hit(:id) # gets alcatraz  for now.
     render :json => @forecast
   end
 
