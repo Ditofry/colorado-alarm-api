@@ -1,25 +1,29 @@
-####Who:
+####Who
 Brandon Barrett, Amir Kashipasha, Dilara Madinger, Derek Riemer.
 
-####Title:
+####Title
 Weather Alarm Clock
 
-####Vision:
+####Vision
 The Weather Alarm Clock will allow people to be on time, regardless of the weather.
 
-####Automated Tests:
+####Automated Tests
 We have Unit and Functional tests for our API written with:
 [Minitest](https://github.com/seattlerb/minitest)
 and
-[Rails Fixtures](http://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures)
+[Rails Fixtures](http://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures) :
+
+!['rails sample test code'](/screenshots/testCodeEx.png?raw=true "rails sample test code")
 
 Our tests are organized into a directory structure that mirrors our application
-directory structure, so our tests are siloed into small, maintainable chunks.
+directory structure, so our tests are siloed into small, maintainable chunks:
+
+!['rails test directory structure'](/screenshots/testFileTree.png?raw=true "rails test directory structure")
 
 We are also using a rails database configuration that allows us to run our tests
 against a separate Test database, which allows us to use and abuse inserts and other
 potentialy destructive operations without having to risk harming data that we may
-care about.
+care about in either our development or production databases.
 
 Tests can be run individually by file via command line with
 ```ruby
@@ -30,15 +34,18 @@ The entire test suite can be run with
 $: bundle exec rake test
 ```
 
-Our test suite runs in roughly 1.7 seconds with around 2100 assertions.  The
-reason for the high number of assertions is that some of our test run with a random number
+Our test suite runs in roughly 2.5 seconds with around 2100 assertions:  
+!['rails sample test output'](/screenshots/testOutput.png?raw=true "rails sample test output")
+
+The reason for the high number of assertions is that some of our test run with a random number
 generation over a large range of values, but since those tests are unit tests
 it doesn't add much overhead. In fact, a small handful of tests that involve rest requests
 take longer than the thousands of unit tests.
 
-####User Acceptance Tests:
+####User Acceptance Tests
 These tests will take place on our Android devices and are broken down into
 three main user stories that each constitute a single Acceptance test:
+
 1. User can set read time accurately and set the alarm time.
   - User opens app and sees the accurate time of day and date
   - User can navigate to "view alarm" and sees that either the alarm was properly remembered or that there is no alarm yet
