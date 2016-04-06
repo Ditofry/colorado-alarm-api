@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  zip: 1
+  zip: 80211
   time: 2016-03-04
 
 two:
-  zip: 1
+  zip: 80206
   time: 2016-03-04
