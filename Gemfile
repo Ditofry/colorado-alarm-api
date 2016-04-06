@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 #developer.forecast.io library. https://github.com/darkskyapp/forecast-ruby
 gem 'forecast_io'
+gem 'geocoder'
 #Windows timezone fix.
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
