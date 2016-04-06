@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404002927) do
+ActiveRecord::Schema.define(version: 20160406025539) do
 
   create_table "forecasts", force: :cascade do |t|
     t.integer  "zip"
     t.date     "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "temp"
+    t.string   "precip"
   end
 
   add_index "forecasts", ["zip"], name: "index_forecasts_on_zip"
