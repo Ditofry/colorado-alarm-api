@@ -1,7 +1,8 @@
 class ForecastsController < ApplicationController
 
   def index
-    render :json => Forecast.all
+    @forecasts = Forecast.all
+    render :json => @forcasts
   end
 
   def show
