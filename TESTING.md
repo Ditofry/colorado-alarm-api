@@ -1,13 +1,13 @@
-####Who
+## Who
 Brandon Barrett, Amir Kashipasha, Dilara Madinger, Derek Riemer.
 
-####Title
+## Title
 Weather Alarm Clock
 
-####Vision
+## Vision
 The Weather Alarm Clock will allow people to be on time, regardless of the weather.
 
-####Automated Tests
+## Automated Tests
 We have Unit and Functional tests for our API written with:
 [Minitest](https://github.com/seattlerb/minitest)
 and
@@ -42,27 +42,74 @@ generation over a large range of values, but since those tests are unit tests
 it doesn't add much overhead. In fact, a small handful of tests that involve rest requests
 take longer than the thousands of unit tests.
 
-####User Acceptance Tests
+## User Acceptance Tests
 These tests will take place on our Android devices and are broken down into
 three main user stories that each constitute a single Acceptance test:
 
-1. User can set read time accurately and set the alarm time.
-  - User opens app and sees the accurate time of day and date
-  - User can navigate to "view alarm" and sees that either the alarm was properly remembered or that there is no alarm yet
-  - User can set an initial alarm, or overwrite the existing alarm
-  - After setting the alarm, if the user exits the app and then returns to the app, the alarm that was most recently set will have been properly remembered.
+### Use Case 1: App Home Screen
 
-2. Users have effective alarm UI.
-  - User has an alarm that has been set.
-  - After the alarm has reached the alarm time, it will go off, and it will play an alarm noise.
-  - Image behind alarm depicts accurate weather (in this test will be "good weather")
-  - User will be able to turn off alarm noise by pressing a "stop" button and have it stay off
+#### Description
+All of the App's UI as well as its `MainActivity` class will run on our app's home screen.
 
-3. Users have their alarm altered by weather
-  - User has an alarm that has been set.
-  - User's alarm is told that the weather will be or will very likely be rainy or snowy around the alarm time.
-  - Alarm time is automatically set to go off 15 minutes earlier.
-  - Image behind alarm clock depicts bad weather.
+#### Pre-conditions
+ - have app installed
+
+#### Post-conditions
+ - Alarm has been set
+
+#### Frequency of Use
+ - Always used
+
+#### Flow of Events
+  - **Actor Action:** Opens app.  
+  **System Response:**  Displays the accurate time of day, date, and current alarm.
+  - **Actor Action:** Taps "set alarm" button.  
+  **System Response:** Functioning time-set widget pops up.
+  - **Actor Action:** Taps "save" button.  
+  **System Response:** Alarm is set and is reflected on home screen of app.
+  - **Actor Action:** After setting the alarm, the user exits the app, closes the app, and then re-opens the app.  
+  **System Response:** the alarm that was most recently set will have been properly remembered.
+
+### Use Case 2: Users receive alarms
+#### Description
+After setting an alarm, that alarm will go off on time and get the user's attention.
+#### Pre-conditions
+ - Alarm has been set for very near future
+ - Weather conditions have been set to "good" e.g. "Sunny, 70˚ F"
+
+#### Post-conditions
+ - Alarm has been successfully de-activated
+
+#### Frequency of Use
+ - Daily use
+
+#### Flow of Events
+  - **Actor Action:** Alarm has reaches the alarm time  
+  **System Response:** Alarm will go off, and it will play an alarm noise.
+  - **Actor Action:** User taps "Stop" button on alarm.  
+  **System Response:** Alarm noise stops and image behind alarm depicts accurate weather (in this test will be "good weather").
+  - **Actor Action:** User will wait for alarm to play again.  
+  **System Response:** alarm will not play again because we aren't building snooze functionality.
+
+### Use Case 3: Users have their alarm altered by weather
+#### Description
+After setting an alarm, that alarm will go off 15 minutes ahead of time to give the user more time to prep for adverse weather.
+
+#### Pre-conditions
+ - Alarm has been set for very near future
+ - Weather conditions have been set to "bad" e.g. "Snowy, 0˚ F"
+
+#### Post-conditions
+ - Alarm has been successfully de-activated
+
+#### Frequency of Use
+ - Daily use
+
+#### Flow of Events
+  - **Actor Action:** Alarm has reaches 15 minutes before the user-chosen alarm time  
+  **System Response:** Alarm will go off, and it will play an alarm noise.
+  - **Actor Action:** User taps "Stop" button on alarm.  
+  **System Response:** Alarm noise stops and image behind alarm depicts accurate weather (in this test will be "bad weather").
 
 We are using UI test with [Espresso](http://developer.android.com/training/testing/ui-testing/espresso-testing.html) in the [JUnit4](http://junit.org/junit4/) style.
 To run the test via Gradle: Use the connectedCheck task
