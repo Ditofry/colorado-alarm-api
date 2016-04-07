@@ -8,10 +8,10 @@ Weather Alarm Clock
 The Weather Alarm Clock will allow people to be on time, regardless of the weather.
 
 ## Automated Tests
-We have Unit and Functional tests for our API written with:
-[Minitest](https://github.com/seattlerb/minitest)
-and
-[Rails Fixtures](http://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures) :
+We have Unit and Functional tests for our API written with
+[Minitest](https://github.com/seattlerb/minitest) and [Rails Fixtures](http://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures).
+
+An example of some functional controller tests:  
 
 !['rails sample test code'](/screenshots/testCodeEx.png?raw=true "rails sample test code")
 
