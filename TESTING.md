@@ -42,7 +42,7 @@ generation over a large range of values, but since those tests are unit tests
 it doesn't add much overhead. In fact, a small handful of tests that involve rest requests
 take longer than the thousands of unit tests.
 
-## User Acceptance Tests
+# User Acceptance Tests
 These tests will take place on our Android devices and are broken down into
 three main user stories that each constitute a single Acceptance test:
 
