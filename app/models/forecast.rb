@@ -12,19 +12,20 @@ if isWindows? then
 end
 
 class Forecast < ActiveRecord::Base
-validates :zip, presence:true, length: { in: 5..5 }
-validates_inclusion_of :lat, allow_nil: true, :in => -90..90
-validates_inclusion_of :lng, allow_nil: true, :in => -180..180
-attr_accessor :forecast #remove or privatize this later if it's evil, I want it for debugging.
+  validates :zip, presence:true, length: { in: 5..5 }
+  validates_inclusion_of :lat, allow_nil: true, :in => -90..90
+  validates_inclusion_of :lng, allow_nil: true, :in => -180..180
+  attr_accessor :forecast #remove or privatize this later if it's evil, I want it for debugging.
 
   def hit
     if (self.lat.nil? or self.lng.nil?)
       return "error!" #should actually throw an error.
     end
-    apiKey = Figaro.env.forecast_io_key # could also use ENV['forecast_io_key']
-    keyFile.close
-    ForecastIO.api_key = apiKey
+
+    ForecastIO.api_key = Figaro.env.forecast_io_key # could also use ENV['forecast_io_key']
+
     self.forecast = ForecastIO.forecast(self.lat, self.lng, params: { units: 'us' })
+
     if self.forecast.nil?
       return false
     else

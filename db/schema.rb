@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406025539) do
+ActiveRecord::Schema.define(version: 20160417000641) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "state"
+    t.float    "lat"
+    t.float    "lon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "forecasts", force: :cascade do |t|
     t.integer  "zip"

@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 #developer.forecast.io library. https://github.com/darkskyapp/forecast-ruby
 gem 'forecast_io'
-gem 'geocoder'
 #Windows timezone fix.
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'whenever', :require => false
 gem "figaro"
+gem 'geocoder'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
