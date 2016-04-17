@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417000641) do
+ActiveRecord::Schema.define(version: 20160417045753) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -23,16 +23,19 @@ ActiveRecord::Schema.define(version: 20160417000641) do
   end
 
   create_table "forecasts", force: :cascade do |t|
-    t.integer  "zip"
     t.date     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "temp"
-    t.string   "precip"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "summary"
+    t.string   "icon"
+    t.string   "precip_type"
+    t.decimal  "precip_intensity"
+    t.decimal  "precip_probability"
+    t.decimal  "temperature"
+    t.decimal  "apparent_temperature"
+    t.decimal  "dew_point"
+    t.integer  "visibility"
+    t.integer  "city_id"
   end
-
-  add_index "forecasts", ["zip"], name: "index_forecasts_on_zip"
 
 end

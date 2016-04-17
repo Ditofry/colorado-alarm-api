@@ -8,4 +8,12 @@ namespace :alarm_api do
     end
     City.create(cities)
   end
+
+  desc "Get new forecasts for all of our cities"
+  task update_all_forecasts: :environment do
+    error_msg = "Failed to retrieve forcast for city: "
+    City.all.each do |city|
+      logger.fatal error_msg + city.name unless city.retrieve_forecast
+    end
+  end
 end
