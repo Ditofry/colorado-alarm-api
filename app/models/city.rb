@@ -26,6 +26,6 @@ class City < ActiveRecord::Base
   end
 
   def address_changed
-    (name_changed? || state_changed?) && address.present?
+    (name_changed? || state_changed?) && address.present? # present? also tests empty string
   end
 end
