@@ -17,3 +17,5 @@
 /tmp
 #ignore api key.
 app/._api_key
+# Ignore application configuration
+/config/application.yml
