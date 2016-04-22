@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20160417045753) do
   end
 
   create_table "forecasts", force: :cascade do |t|
-    t.date     "time"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "summary"
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160417045753) do
     t.decimal  "apparent_temperature"
     t.decimal  "dew_point"
     t.integer  "visibility"
+    t.integer  "time"
     t.integer  "city_id"
   end
 

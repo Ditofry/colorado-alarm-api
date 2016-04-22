@@ -1,13 +1,12 @@
 class ForecastsController < ApplicationController
 
   def index
-    @forecasts = Forecast.all
-    render :json => @forecasts
-  end
-
-  def show
-    @forecast = Forecast.where(zip: params[:zipcode])
+    lat = params[:lat]
+    lon = params[:lon]
+    city = Geocoder.search("#{lat},#{lon}").first.city
+    @forecast = City.where(name: city).first.forecasts.first
     render :json => @forecast
   end
+
 
 end
