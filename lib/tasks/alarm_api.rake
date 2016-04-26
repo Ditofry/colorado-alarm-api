@@ -1,5 +1,6 @@
 require 'csv'
 
+# Taks namespace for our specific bulk task runners
 namespace :alarm_api do
   desc "Add a few popular Colorado Cities to get things started"
   task init_cities: :environment do
