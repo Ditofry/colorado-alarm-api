@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Forecast - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-getRecords">#getRecords</a>
+    
+    <li ><a href="#method-i-hit">#hit</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Forecast">
+  <h1 id="class-Forecast" class="class">
+    class Forecast
+  </h1>
+
+  <section class="description">
+    
+<p>Atomic <a href="Forecast.html">Forecast</a> unit.  Attached to <a
+href="City.html">City</a> model and provides temperature and precipitation
+information.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-forecast" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">forecast</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>validates :zip, presence:true, length: { in: 5..5 } validates_inclusion_of
+:lat, allow_nil: true, :in =&gt; -90..90 validates_inclusion_of :lng,
+allow_nil: true, :in =&gt; -180..180</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-getRecords" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getRecords</span><span
+            class="method-args">(limit, types)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Grab forecast records</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getRecords-source">
+            <pre><span class="ruby-comment"># File app/models/forecast.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getRecords</span>(<span class="ruby-identifier">limit</span>, <span class="ruby-identifier">types</span>)
+  <span class="ruby-identifier">typeStrs</span> = []
+  <span class="ruby-identifier">types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:precip</span>
+      <span class="ruby-identifier">typeStrs</span>.<span class="ruby-identifier">append</span>(<span class="ruby-string">&quot;precipProbability&quot;</span>)
+      <span class="ruby-identifier">typeStrs</span>.<span class="ruby-identifier">append</span>(<span class="ruby-string">&quot;precipType&quot;</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:temp</span>
+      <span class="ruby-identifier">typeStrs</span>.<span class="ruby-identifier">append</span>(<span class="ruby-string">&quot;temperature&quot;</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:icon</span> <span class="ruby-comment">#machine readable icons like cloudy. See the api documentation for forecastio api for more details.</span>
+      <span class="ruby-identifier">typeStrs</span>.<span class="ruby-identifier">append</span>(<span class="ruby-string">&quot;icon&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;error&quot;</span> <span class="ruby-comment">#how to raise errors in ruby again?</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">hours</span> = <span class="ruby-ivar">@forecast</span>[<span class="ruby-string">&quot;hourly&quot;</span>][<span class="ruby-string">&quot;data&quot;</span>]
+  <span class="ruby-identifier">records</span> = [] <span class="ruby-comment">#array stores hashes with each of the records, and their unit.</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">limit</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&quot;times&quot;</span>)
+    <span class="ruby-identifier">limit</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">curRecord</span> = {}
+      <span class="ruby-identifier">typeStrs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">typeName</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">curRecord</span>[<span class="ruby-identifier">typeName</span>] = <span class="ruby-identifier">hours</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">typeName</span>] <span class="ruby-comment"># hours[x] is a hash and we only need a subset of it.</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">records</span>.<span class="ruby-identifier">append</span> <span class="ruby-identifier">curRecord</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">records</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Ping API for successful connection</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hit-source">
+            <pre><span class="ruby-comment"># File app/models/forecast.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hit</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lat</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lng</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;error!&quot;</span> <span class="ruby-comment">#should actually throw an error.</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">forecast</span> = <span class="ruby-constant">ForecastIO</span>.<span class="ruby-identifier">forecast</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lat</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lng</span>, <span class="ruby-identifier">params</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">units</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;us&#39;</span> })
+
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">forecast</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

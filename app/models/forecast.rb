@@ -1,5 +1,4 @@
-#
-
+# Atomic Forecast unit.  Attached to City model and provides temperature and precipitation information.
 class Forecast < ActiveRecord::Base
   belongs_to :city
   # validates :zip, presence:true, length: { in: 5..5 }
