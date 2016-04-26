@@ -1,4 +1,4 @@
-#require 'forecast_io'
+#
 
 class Forecast < ActiveRecord::Base
   belongs_to :city
@@ -7,6 +7,7 @@ class Forecast < ActiveRecord::Base
   # validates_inclusion_of :lng, allow_nil: true, :in => -180..180
   attr_accessor :forecast #remove or privatize this later if it's evil, I want it for debugging.
 
+  # Ping API for successful connection
   def hit
     if (self.lat.nil? or self.lng.nil?)
       return "error!" #should actually throw an error.
@@ -21,13 +22,8 @@ class Forecast < ActiveRecord::Base
     end
   end
 
+  # Grab forecast records
   def getRecords(limit, types)
-    <<-DOCUMENTATION
-    @Brandon: is this the right way to document methods in rails api's?
-    getRecords: gets records from the forecast data.
-    @limit: The number of hours of records.
-    @types:  list of symbols of  any of [:precip, :icon, :temp]
-    DOCUMENTATION
     typeStrs = []
     types.each do |type|
       if type == :precip
